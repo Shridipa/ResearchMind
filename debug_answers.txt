@@ -1,0 +1,16 @@
+Q: What is the main contribution of this paper?
+A: *[Fallback Extractive Answer — provider unavailable]*
+
+14 Taken together, the pattern of news releases tends to be influenced by firms’ disclosure strategies .Among these disclosure possibilities, managers who disclosed bad (good) news in the past may release more bad (good) news in the future .This situation forms our strategic disclosure hypothesis for the understanding of news momentum: H2: Firms’ strategic disclosure behavior induces news momentum .Our third conjecture of what induces news momentum is related to firms’ fundamentals
+confidence: 0.678 sources: 5 grounding_score: 93.68894502520561
+---
+Q: Who won the FIFA World Cup in 2018?
+A: *[Fallback Extractive Answer — provider unavailable]*
+
+columns in Panel D show that the RSK residuals purged from the inﬂuence of RSJ strongly positively predict the cross-sectional variation in the future returns .For example, the weekly FFC4 alpha for the High−Low residual sorted value-weighted portfolios equals 33 These results cannot simply be ascribed to measurement errors in RSK, which would 16These results for the residual-based sorts are also in line with ACJV, who report much weaker t-statistics for the High−Low spread for the value-weighted RSK-sorted portfolios at diﬀerent REV levels .For example, the weekly FFC4 alpha for the High−Low residual sorted value-weighted portfolios equals 33
+confidence: 0.622 sources: 5 grounding_score: 92.22713112831116
+---
+Q: How does photosynthesis work?
+A: I could not find supporting evidence in the indexed papers.
+confidence: 0.0 sources: 0 grounding_score: 100.0
+---

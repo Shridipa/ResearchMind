@@ -1,0 +1,6 @@
+{
+  "contributions": "ports the results from a series of standard Fama\u2013MacBeth (1973) cross-sectional type regressions that simultaneously control for multiple explanatory variables 18This again is also consistent with the idea that RSJ provides a more accurate proxy for some underlying latent factor that drives the returns, as discussed more formally in Appendix A 3",
+  "methodology": ".Also, the di\ufb00erence in the alphas between small and large \ufb01rms equals 32 49 bps per week, with a highly statistically signi\ufb01cant t-statistic of 4 These results are consistent with the idea that large \ufb01rms tend to have better information environments and more sophisticated traders, resulting in less overreaction to extreme price movements, and thus weaker RSJ e\ufb00ects",
+  "results": "com/abstract=2565660\nls about the data and the variable construction, along with more in depth econometric discussions of some of the empirical \ufb01ndings, are deferred to an Appendix These results are consistent with the idea that large \ufb01rms tend to have better information environments and more sophisticated traders, resulting in less overreaction to extreme price movements, and thus weaker RSJ e\ufb00ects .Panel B reports the results of multiple regressions with more than one explanatory variable",
+  "limitations": "Not explicitly mentioned."
+}

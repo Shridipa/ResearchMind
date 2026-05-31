@@ -1,0 +1,1 @@
+{"query":"What is the central contribution of attention mechanisms?","relevant_chunk_ids":["sample:p1:c0"],"answer":"Attention lets models weight contextual tokens when producing representations."}

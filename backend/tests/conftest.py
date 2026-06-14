@@ -1,38 +1,14 @@
-"""Pytest configuration and shared fixtures."""
-
-import sys
-import os
-from pathlib import Path
-
-# Setup path for imports
-backend_dir = Path(__file__).parent.parent
-if str(backend_dir) not in sys.path:
-    sys.path.insert(0, str(backend_dir))
-
-# Set environment for testing
-os.environ.setdefault("ENVIRONMENT", "test")
-
-
 import pytest
+from unittest.mock import patch
+import os
 
-
-def pytest_configure(config):
-    """Configure pytest."""
-    config.addinivalue_line(
-        "markers", "integration: mark test as integration test"
-    )
-    config.addinivalue_line(
-        "markers", "slow: mark test as slow"
-    )
-
-
-@pytest.fixture(scope="session")
-def backend_path():
-    """Get backend directory path."""
-    return Path(__file__).parent.parent
-
-
-@pytest.fixture(scope="session")
-def data_path():
-    """Get data directory path."""
-    return Path(__file__).parent.parent.parent / "data"
+@pytest.fixture(autouse=True)
+def mock_env_vars():
+    """Automatically injects dummy keys for all tests to bypass initialization checks."""
+    mock_env = {
+        "OPENROUTER_API_KEY": "dummy_openrouter_key_for_testing",
+        "AWS_ACCESS_KEY_ID": "dummy_aws_key",
+        "AWS_SECRET_ACCESS_KEY": "dummy_aws_secret"
+    }
+    with patch.dict(os.environ, mock_env):
+        yield

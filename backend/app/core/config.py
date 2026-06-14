@@ -36,7 +36,6 @@ class Settings(BaseSettings):
     openrouter_model: str = Field(default="deepseek/deepseek-v4-flash:free")
     openrouter_fallback_models: str = Field(
         default="deepseek/deepseek-v4-flash:free,google/gemini-2.0-flash-exp:free,qwen/qwen-2.5-72b-instruct:free,openrouter/free",
-        env="OPENROUTER_FALLBACK_MODELS",
         repr=False,
     )
     openai_default_model: str = "gpt-4o-mini"

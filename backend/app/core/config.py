@@ -17,6 +17,9 @@ class Settings(BaseSettings):
     environment: str = Field(default="development", env="ENVIRONMENT")
     debug: bool = Field(default=False, env="DEBUG")
     backend_cors_origins: str = "http://localhost:3000"
+    database_url: str = Field(default="postgresql+asyncpg://researchmind:password@localhost:5432/researchmind", env="DATABASE_URL")
+    redis_url: str = Field(default="redis://localhost:6379/0", env="REDIS_URL")
+    enable_telemetry: bool = Field(default=False, env="ENABLE_TELEMETRY")
     data_dir: Path = DATA_ROOT
     indexes_path: Path = INDEXES_ROOT
     summary_cache_path: Path = DATA_ROOT / "cache" / "summaries"
@@ -38,6 +41,13 @@ class Settings(BaseSettings):
     )
     openai_default_model: str = "gpt-4o-mini"
     default_llm_model: str = "deepseek/deepseek-v4-flash:free"
+    
+    # AWS Bedrock settings
+    aws_access_key_id: str | None = Field(default=None, env="AWS_ACCESS_KEY_ID")
+    aws_secret_access_key: str | None = Field(default=None, env="AWS_SECRET_ACCESS_KEY")
+    aws_region_name: str = Field(default="us-east-1", env="AWS_REGION_NAME")
+    bedrock_default_model: str = "anthropic.claude-3-sonnet-20240229-v1:0"
+
     log_level: str = "INFO"
     top_k: int = 3
     chunk_size: int = 900

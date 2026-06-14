@@ -20,7 +20,11 @@ def get_llm_provider() -> LLMProvider:
         from app.llm.mock_provider import MockProvider
 
         return MockProvider()
+    if provider_name == "bedrock":
+        from app.llm.bedrock_provider import BedrockLLM
+
+        return BedrockLLM()
     raise ValueError(
         f"Unsupported llm_provider '{settings.llm_provider}'. "
-        "Supported providers are: openrouter, openai, gemini, mock."
+        "Supported providers are: openrouter, openai, gemini, bedrock, mock."
     )

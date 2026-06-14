@@ -40,6 +40,9 @@ export function PapersWorkspace({
   uploadedFiles = [],
   progressLines = [],
   isUploading = false,
+  onRetryUpload,
+  onRemoveUpload,
+  onRequestReupload,
 }: PapersWorkspaceProps) {
   const [papers, setPapers] = useState<PaperRecord[]>([]);
   const [selected, setSelected] = useState<PaperRecord | null>(null);

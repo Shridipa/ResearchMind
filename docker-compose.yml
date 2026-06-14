@@ -1,12 +1,49 @@
 services:
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: researchmind
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: researchmind
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U researchmind -d researchmind"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   backend:
     build: .
     ports:
       - "8000:8000"
     env_file:
       - configs/.env.example
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://researchmind:password@postgres:5432/researchmind
+      - REDIS_URL=redis://redis:6379/0
     volumes:
       - ./data:/app/data
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
   frontend:
     image: node:20-alpine
     working_dir: /app
@@ -17,3 +54,9 @@ services:
       - ./frontend:/app
     environment:
       NEXT_PUBLIC_API_BASE_URL: http://localhost:8000
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  redis_data:

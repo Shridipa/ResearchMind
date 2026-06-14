@@ -13,27 +13,27 @@ INDEXES_ROOT = DATA_ROOT / "indexes"
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
-    app_name: str = Field(default="ResearchMind AI", env="APP_NAME")
-    environment: str = Field(default="development", env="ENVIRONMENT")
-    debug: bool = Field(default=False, env="DEBUG")
+    app_name: str = Field(default="ResearchMind AI")
+    environment: str = Field(default="development")
+    debug: bool = Field(default=False)
     backend_cors_origins: str = "http://localhost:3000"
-    database_url: str = Field(default="postgresql+asyncpg://researchmind:password@localhost:5432/researchmind", env="DATABASE_URL")
-    redis_url: str = Field(default="redis://localhost:6379/0", env="REDIS_URL")
-    enable_telemetry: bool = Field(default=False, env="ENABLE_TELEMETRY")
+    database_url: str = Field(default="postgresql+asyncpg://researchmind:password@localhost:5432/researchmind")
+    redis_url: str = Field(default="redis://localhost:6379/0")
+    enable_telemetry: bool = Field(default=False)
     data_dir: Path = DATA_ROOT
     indexes_path: Path = INDEXES_ROOT
     summary_cache_path: Path = DATA_ROOT / "cache" / "summaries"
     faiss_index_path: Path = INDEXES_ROOT / "researchmind.faiss"
     metadata_path: Path = INDEXES_ROOT / "metadata.json"
-    use_local_summarization: bool = Field(default=True, env="USE_LOCAL_SUMMARIZATION")
+    use_local_summarization: bool = Field(default=True)
     embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
-    llm_provider: str = Field(default="openrouter", env="LLM_PROVIDER")
+    llm_provider: str = Field(default="openrouter")
     openai_api_key: str | None = Field(default=None, repr=False)
-    openrouter_api_key: str | None = Field(default=None, repr=False, env="OPENROUTER_API_KEY")
-    gemini_api_key: str | None = Field(default=None, repr=False, env="GEMINI_API_KEY")
-    gemini_model: str = Field(default="gemini-1.5-flash", env="GEMINI_MODEL")
-    openrouter_base_url: str = Field(default="https://openrouter.ai/api/v1", env="OPENROUTER_BASE_URL")
-    openrouter_model: str = Field(default="deepseek/deepseek-v4-flash:free", env="OPENROUTER_MODEL")
+    openrouter_api_key: str | None = Field(default=None, repr=False)
+    gemini_api_key: str | None = Field(default=None, repr=False)
+    gemini_model: str = Field(default="gemini-1.5-flash")
+    openrouter_base_url: str = Field(default="https://openrouter.ai/api/v1")
+    openrouter_model: str = Field(default="deepseek/deepseek-v4-flash:free")
     openrouter_fallback_models: str = Field(
         default="deepseek/deepseek-v4-flash:free,google/gemini-2.0-flash-exp:free,qwen/qwen-2.5-72b-instruct:free,openrouter/free",
         env="OPENROUTER_FALLBACK_MODELS",
@@ -43,9 +43,9 @@ class Settings(BaseSettings):
     default_llm_model: str = "deepseek/deepseek-v4-flash:free"
     
     # AWS Bedrock settings
-    aws_access_key_id: str | None = Field(default=None, env="AWS_ACCESS_KEY_ID")
-    aws_secret_access_key: str | None = Field(default=None, env="AWS_SECRET_ACCESS_KEY")
-    aws_region_name: str = Field(default="us-east-1", env="AWS_REGION_NAME")
+    aws_access_key_id: str | None = Field(default=None)
+    aws_secret_access_key: str | None = Field(default=None)
+    aws_region_name: str = Field(default="us-east-1")
     bedrock_default_model: str = "anthropic.claude-3-sonnet-20240229-v1:0"
 
     log_level: str = "INFO"

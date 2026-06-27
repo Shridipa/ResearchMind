@@ -1,0 +1,198 @@
+{
+  "users": [
+    {
+      "id": "demo-user-001",
+      "email": "demo@researchmind.ai",
+      "hashed_password": "$2b$12$kdq7G6IV.lMJCfmP4XeXr..5uNbTmcDyFosDLZrfCVNVx/Wdzblz.",
+      "first_name": "Demo",
+      "last_name": "Admin",
+      "role": "WORKSPACE_ADMIN"
+    }
+  ],
+  "workspaces": [
+    {
+      "id": "demo-workspace-001",
+      "name": "ResearchMind Demo Workspace",
+      "description": "Pre-loaded demo workspace for judges and evaluators",
+      "created_at": "2026-06-25T15:15:09.593289+00:00",
+      "member_count": 4
+    }
+  ],
+  "workspace_members": [
+    {
+      "workspace_id": "demo-workspace-001",
+      "user_id": "demo-user-001",
+      "role": "WORKSPACE_ADMIN"
+    }
+  ],
+  "documents": [
+    {
+      "id": "doc-001",
+      "workspace_id": "demo-workspace-001",
+      "title": "AI Research Trends 2026",
+      "file_name": "AI Research Trends 2026.pdf",
+      "file_type": "PDF",
+      "size_bytes": 2457600,
+      "status": "COMPLETED",
+      "progress": 100,
+      "uploaded_by": "Demo Admin",
+      "uploaded_at": "2026-06-25T15:15:09.593289+00:00",
+      "versions": [
+        {
+          "version": 1,
+          "created_at": "2026-06-25T15:15:09.593289+00:00",
+          "author": "Demo Admin",
+          "summary": "Initial upload"
+        }
+      ]
+    },
+    {
+      "id": "doc-002",
+      "workspace_id": "demo-workspace-001",
+      "title": "Market Analysis Report",
+      "file_name": "Market Analysis Report.docx",
+      "file_type": "DOCX",
+      "size_bytes": 1843200,
+      "status": "COMPLETED",
+      "progress": 100,
+      "uploaded_by": "Alex Chen",
+      "uploaded_at": "2026-06-25T15:15:09.593289+00:00",
+      "versions": [
+        {
+          "version": 1,
+          "created_at": "2026-06-25T15:15:09.593289+00:00",
+          "author": "Alex Chen",
+          "summary": "Initial upload"
+        }
+      ]
+    },
+    {
+      "id": "doc-003",
+      "workspace_id": "demo-workspace-001",
+      "title": "Technical Architecture",
+      "file_name": "Technical Architecture.md",
+      "file_type": "MD",
+      "size_bytes": 524288,
+      "status": "COMPLETED",
+      "progress": 100,
+      "uploaded_by": "Priya Singh",
+      "uploaded_at": "2026-06-25T15:15:09.593289+00:00",
+      "versions": [
+        {
+          "version": 1,
+          "created_at": "2026-06-25T15:15:09.593289+00:00",
+          "author": "Priya Singh",
+          "summary": "Initial upload"
+        }
+      ]
+    },
+    {
+      "id": "doc-004",
+      "workspace_id": "demo-workspace-001",
+      "title": "Machine Learning Survey",
+      "file_name": "Machine Learning Survey.pdf",
+      "file_type": "PDF",
+      "size_bytes": 3145728,
+      "status": "EMBEDDING",
+      "progress": 62,
+      "uploaded_by": "Demo Admin",
+      "uploaded_at": "2026-06-25T15:15:09.593289+00:00",
+      "versions": [
+        {
+          "version": 1,
+          "created_at": "2026-06-25T15:15:09.593289+00:00",
+          "author": "Demo Admin",
+          "summary": "Initial upload"
+        }
+      ]
+    }
+  ],
+  "research_projects": [
+    {
+      "id": "rp-001",
+      "workspace_id": "demo-workspace-001",
+      "name": "AI Adoption Research",
+      "status": "active"
+    },
+    {
+      "id": "rp-002",
+      "workspace_id": "demo-workspace-001",
+      "name": "Healthcare Analytics Study",
+      "status": "active"
+    },
+    {
+      "id": "rp-003",
+      "workspace_id": "demo-workspace-001",
+      "name": "FinTech Market Research",
+      "status": "completed"
+    }
+  ],
+  "ingestion_jobs": [
+    {
+      "id": "job-001",
+      "document_id": "doc-004",
+      "workspace_id": "demo-workspace-001",
+      "document_name": "Machine Learning Survey.pdf",
+      "status": "EMBEDDING",
+      "progress": 62,
+      "error_message": null,
+      "created_at": "2026-06-25T15:15:09.593289+00:00"
+    }
+  ],
+  "research_jobs": [],
+  "activity": [
+    {
+      "id": "act-001",
+      "workspace_id": "demo-workspace-001",
+      "action": "DOCUMENT_UPLOAD",
+      "message": "AI Research Trends 2026.pdf uploaded",
+      "user": "Demo Admin",
+      "timestamp": "2026-06-25T15:15:09.593289+00:00"
+    },
+    {
+      "id": "act-002",
+      "workspace_id": "demo-workspace-001",
+      "action": "RESEARCH_COMPLETED",
+      "message": "FinTech Market Research analysis completed",
+      "user": "Alex Chen",
+      "timestamp": "2026-06-25T15:15:09.593289+00:00"
+    },
+    {
+      "id": "act-003",
+      "workspace_id": "demo-workspace-001",
+      "action": "VERSION_CREATED",
+      "message": "Version 2 created for Market Analysis Report",
+      "user": "Priya Singh",
+      "timestamp": "2026-06-25T15:15:09.593289+00:00"
+    },
+    {
+      "id": "act-004",
+      "workspace_id": "demo-workspace-001",
+      "action": "MEMBER_ADDED",
+      "message": "Marcus Wu joined the workspace",
+      "user": "Demo Admin",
+      "timestamp": "2026-06-25T15:15:09.593289+00:00"
+    },
+    {
+      "id": "act-005",
+      "workspace_id": "demo-workspace-001",
+      "action": "AI_SUMMARY",
+      "message": "AI summary generated for Technical Architecture",
+      "user": "System",
+      "timestamp": "2026-06-25T15:15:09.593289+00:00"
+    }
+  ],
+  "notifications": [],
+  "metrics": {
+    "documents_processed_today": 42,
+    "active_research_jobs": 3,
+    "queue_depth": 1,
+    "workspace_members": 4,
+    "storage_used_gb": 2.4,
+    "search_queries_today": 187,
+    "avg_processing_time_sec": 144,
+    "documents_total": 10000,
+    "research_sessions_total": 1000,
+    "reliability_pct": 99.9
+  }
+}

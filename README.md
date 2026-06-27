@@ -1,90 +1,240 @@
-# AI Operations Platform
+# ResearchMind 2.0 Enterprise
 
-The AI Operations Platform is an enterprise-grade multi-agent orchestration system designed for complex, retrieval-augmented research and operational tasks. It provides a robust, scalable backend for deploying autonomous agents capable of task decomposition, structured reasoning, and audited tool execution.
+> **Enterprise AI Research Operating System** — multi-tenant workspaces, distributed document ingestion, event-driven architecture, real-time collaboration, RBAC security, and full observability.
 
-## System Intent
+![Version](https://img.shields.io/badge/version-2.0.0-blue)
+![License](https://img.shields.io/badge/license-Apache--2.0-green)
+![Stack](https://img.shields.io/badge/stack-FastAPI%20%7C%20Next.js%20%7C%20Celery%20%7C%20Redis%20%7C%20PostgreSQL-purple)
 
-This project serves as a reference implementation for large-scale AI operations. Instead of relying on single-shot LLM queries, the platform utilizes a multi-agent framework where specialized personas (Planner, Researcher, Reasoner, Summarizer) collaborate through a directed acyclic graph (DAG). This approach significantly reduces hallucination rates, enforces explicit reasoning steps, and ensures all outputs are firmly grounded in retrieved evidence.
+---
 
-The platform is designed with enterprise security and observability in mind, incorporating strict role-based access controls for tool execution and comprehensive distributed tracing for performance monitoring.
+## Architecture Overview
 
-## Core Capabilities
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     ResearchMind 2.0                         │
+├──────────────┬──────────────┬───────────────┬───────────────┤
+│   Next.js 14 │   FastAPI    │  Celery Workers│  Redis Pub/Sub│
+│   Dashboard  │   REST API   │  (5 queues)    │  + WebSocket  │
+├──────────────┴──────────────┴───────────────┴───────────────┤
+│              PostgreSQL (metadata + audit)                    │
+│              Vector Store  (FAISS embeddings)                 │
+│              S3-Compatible Storage (documents)                │
+├─────────────────────────────────────────────────────────────┤
+│          Prometheus + Grafana (observability)                │
+│          OpenTelemetry (distributed tracing)                 │
+└─────────────────────────────────────────────────────────────┘
+```
 
-*   **Multi-Agent Orchestration**: Agent workflows are managed as state graphs, allowing for conditional routing, error recovery, and complex reasoning pipelines.
-*   **Enterprise Tool Registry**: Agents interact with external systems through a dynamic, secure tool registry featuring strict input validation and immutable audit logging.
-*   **Model Context Protocol (MCP)**: Native support for JSON-RPC 2.0 MCP server and client architectures, enabling standard integration with third-party tools and platforms.
-*   **Provider Agnostic LLM Layer**: The core abstraction supports switching between AWS Bedrock (Claude 3, Titan, Nova), OpenRouter, Gemini, and OpenAI with built-in rate limiting and token tracking.
-*   **Hybrid Retrieval (RAG)**: Combines dense vector search (PGVector, FAISS) with sparse keyword retrieval (BM25) for high-accuracy evidence extraction.
-*   **Comprehensive Observability**: Integrated OpenTelemetry for distributed tracing across agent executions and API requests.
+## Key Features
 
-## Architecture
+| Feature | Description |
+|---------|-------------|
+| 🏗️ **Multi-tenant Workspaces** | Organizations → Workspaces → Documents/Research |
+| 🔄 **Distributed Ingestion** | 5-stage async pipeline: Upload → Chunk → Embed → Index → Ready |
+| 📡 **Event-Driven Architecture** | Redis Pub/Sub domain events, WebSocket real-time updates |
+| 🔐 **RBAC Security** | JWT + Refresh tokens, 5-level role hierarchy, permission guards |
+| 🔍 **Hybrid Search** | BM25 keyword + semantic vector similarity combined |
+| 📊 **Observability** | Prometheus metrics, Grafana dashboards, structured logging |
+| 🛡️ **Audit System** | Append-only audit log (who, when, what, where) |
+| 📋 **Document Versioning** | Full version history, comparison, and rollback |
+| ⚡ **Real-time UI** | WebSocket-driven progress updates, notifications |
+| 🚀 **Production Ready** | Docker Compose + Kubernetes manifests + GitHub Actions CI/CD |
 
-The system is organized into decoupled layers:
-1.  **Frontend**: A Next.js and React application providing user interfaces for workflow initiation, document management, and chat.
-2.  **API Gateway**: A FastAPI backend exposing RESTful endpoints, secured by JWT authentication.
-3.  **Graph Engine**: The LangGraph-based workflow executor managing state transitions between agents.
-4.  **Agent Layer**: Independent LangChain-compatible agents that perform specific cognitive functions.
-5.  **Infrastructure**: PostgreSQL for relational data and vector storage, Redis for high-speed caching, and AWS ECS for deployment.
+---
 
-## Technical Stack
+## Quick Start (Local Dev)
 
-### Backend
-*   **Framework**: Python 3.12, FastAPI
-*   **AI Orchestration**: LangChain, LangGraph
-*   **Model Providers**: AWS Bedrock SDK (Boto3), OpenAI, Google Generative AI
-*   **Data Storage**: PostgreSQL (asyncpg, SQLAlchemy), PGVector, Redis
-*   **Observability**: OpenTelemetry
+### Prerequisites
+- Docker & Docker Compose
+- Python 3.12+
+- Node.js 20+
 
-### Frontend
-*   **Framework**: Node.js, Next.js 14, React 18
-*   **Styling**: Tailwind CSS, TypeScript
+### 1. Clone and configure
+```bash
+git clone https://github.com/yourorg/researchmind.git
+cd researchmind
+cp configs/.env.example configs/.env   # fill in API keys
+```
 
-### Infrastructure
-*   **Deployment**: Docker, Docker Compose
-*   **Infrastructure as Code**: Terraform
-*   **Testing**: Pytest
+### 2. Start all services
+```bash
+docker-compose up -d
+```
 
-## Getting Started
+This starts:
+- **PostgreSQL** on `:5432`
+- **Redis** on `:6379`
+- **FastAPI Backend** on `:8000` → [http://localhost:8000/api/docs](http://localhost:8000/api/docs)
+- **Celery Workers** (5 queues: documents, embeddings, research, cleanup, notifications)
+- **Prometheus** on `:9090`
+- **Grafana** on `:3001` (admin/admin)
+- **Next.js Frontend** on `:3000`
 
-### Local Development
+### 3. Run database migrations
+```bash
+cd backend
+alembic upgrade head
+```
 
-1.  **Start Infrastructure Services**:
-    The system requires PostgreSQL and Redis. Start them using Docker Compose:
-    ```bash
-    docker-compose up postgres redis -d
-    ```
+### 4. Start frontend (development mode)
+```bash
+cd frontend
+npm install
+npm run dev
+```
 
-2.  **Configure Environment**:
-    Copy `configs/.env.example` to `.env` and configure your LLM provider credentials (e.g., AWS Bedrock or OpenRouter keys).
+---
 
-3.  **Run the Backend**:
-    ```bash
-    cd backend
-    python -m venv .venv
-    source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-    pip install -r requirements.txt
-    uvicorn app.main:app --reload
-    ```
+## Architecture Details
 
-4.  **Run the Frontend**:
-    ```bash
-    cd frontend
-    npm install
-    npm run dev
-    ```
+### Backend Structure
+```
+backend/app/
+├── api/
+│   ├── v1/
+│   │   ├── enterprise_routes.py   # Auth, Workspaces, Documents, Search, Admin
+│   │   ├── routes/                # Existing RAG/Chat/Papers routes
+│   │   └── router.py
+│   └── websockets.py              # Redis Pub/Sub → WebSocket bridge
+├── auth/
+│   ├── jwt_handler.py             # JWT creation/verification
+│   ├── rbac.py                    # Role/Permission matrix
+│   └── dependencies.py            # FastAPI RBAC guards
+├── domain/
+│   └── models/                    # SQLAlchemy models (User, Workspace, Document, etc.)
+├── events/
+│   ├── domain_events.py           # Typed domain event dataclasses
+│   └── event_bus.py               # Redis-backed async EventBus
+├── services/
+│   ├── ingestion_service.py       # Upload → Celery dispatch orchestration
+│   └── audit_service.py           # Audit log writer
+└── workers/
+    ├── celery_app.py              # Celery config + queue routing
+    ├── document_worker.py         # 5-stage ingestion pipeline
+    ├── embedding_worker.py        # GPU-bound embedding tasks
+    ├── research_worker.py         # Async AI research sessions
+    ├── cleanup_worker.py          # GC for dead jobs/vectors
+    └── notification_worker.py     # Email/in-app notifications
+```
 
-The API documentation will be available at `http://localhost:8000/docs` and the user interface at `http://localhost:3000`.
+### Frontend Structure
+```
+frontend/app/
+├── (dashboard)/
+│   ├── layout.tsx         # Sidebar + command palette + animated transitions
+│   ├── dashboard/         # Metrics, activity charts, ingestion tracker
+│   ├── workspace/         # Workspace grid, team members, activity feed
+│   ├── documents/         # Upload zone, status table, version history
+│   ├── search/            # Hybrid/semantic/keyword search UI
+│   └── admin/             # System health, queue monitor, audit logs, users
+└── globals.css            # Enterprise design system (glassmorphism, tokens)
 
-## Documentation
+frontend/store/
+└── appStore.ts            # Zustand: auth, WebSocket, real-time events
+```
 
-Detailed architectural decisions and implementation notes are available in the `docs/` directory:
-*   `PHASE_1_ARCHITECTURE.md`: Infrastructure and database configurations.
-*   `PHASE_2_BEDROCK.md`: AWS Foundation Model integration strategies.
-*   `PHASE_3_AGENTS.md`: Multi-agent persona design.
-*   `PHASE_4_LANGGRAPH.md`: State graph execution and error handling.
-*   `PHASE_5_TOOLS.md`: Tool registry, auditing, and permissions.
-*   `PHASE_6_MCP.md`: Model Context Protocol specifications.
+### RBAC Roles
+| Role | Create WS | Delete WS | Upload | Delete Docs | Manage Users | Admin Panel |
+|------|-----------|-----------|--------|-------------|--------------|-------------|
+| SUPER_ADMIN | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| ORG_ADMIN | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| WORKSPACE_ADMIN | ❌ | ❌ | ✅ | ✅ | ✅ | ❌ |
+| RESEARCHER | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| VIEWER | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+
+### Ingestion Pipeline
+```
+Document Upload (API)
+       ↓
+  IngestionService.start_ingestion()
+       ↓
+  ingestion_jobs (PENDING) → DB
+       ↓
+  Celery Task → documents queue
+       ↓ ─────────────────────────────────────────┐
+  PROCESSING  →  CHUNKING  →  EMBEDDING  →  INDEXING  →  COMPLETED
+       ↓ (at each step)
+  Redis PUBLISH "document_updates" channel
+       ↓
+  WebSocket pushes to connected browser clients
+```
+
+### Redis Pub/Sub Channels
+| Channel | Events |
+|---------|--------|
+| `document_updates` | `DocumentUploadedEvent`, `DocumentProcessedEvent`, `IngestionProgressEvent` |
+| `research_updates` | `ResearchGeneratedEvent` |
+| `workspace_updates` | `WorkspaceCreatedEvent` |
+| `notifications` | General user notifications |
+
+---
+
+## API Reference
+
+Base URL: `http://localhost:8000/api/v1`
+
+Interactive docs: [http://localhost:8000/api/docs](http://localhost:8000/api/docs)
+
+### Auth
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/auth/register` | Register new user |
+| POST | `/auth/login` | Get JWT tokens |
+| POST | `/auth/refresh` | Refresh access token |
+
+### Workspaces
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/workspaces` | List user's workspaces |
+| POST | `/workspaces` | Create workspace |
+| GET | `/workspaces/{id}` | Get workspace |
+| POST | `/workspaces/{id}/members` | Invite member |
+| DELETE | `/workspaces/{id}/members/{uid}` | Remove member |
+
+### Documents
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/workspaces/{id}/documents` | Upload document (async) |
+| GET | `/workspaces/{id}/documents` | List documents |
+| DELETE | `/workspaces/{id}/documents/{docId}` | Soft-delete document |
+| GET | `/ingestion-jobs/{jobId}` | Poll job status |
+
+### Search & Admin
+| Method | Path | Description |
+|--------|------|-------------|
+| POST | `/search` | Hybrid search |
+| GET | `/admin/health` | System health |
+| GET | `/admin/queue-stats` | Celery queue stats |
+| GET | `/admin/audit-logs` | Paginated audit logs |
+
+### WebSocket
+```
+ws://localhost:8000/ws/{workspace_id}?token={access_token}
+```
+
+---
+
+## Deployment (Kubernetes)
+
+```bash
+kubectl apply -f infra/k8s/postgres-deployment.yaml
+kubectl apply -f infra/k8s/redis-deployment.yaml
+kubectl apply -f infra/k8s/app-deployments.yaml
+```
+
+---
+
+## Monitoring
+
+| Service | URL | Credentials |
+|---------|-----|-------------|
+| Grafana | http://localhost:3001 | admin / admin |
+| Prometheus | http://localhost:9090 | — |
+| API Metrics | http://localhost:8000/metrics | — |
+
+---
 
 ## License
 
-This project is licensed under the MIT License.
+Apache 2.0 — see [LICENSE](LICENSE)

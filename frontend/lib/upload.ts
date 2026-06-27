@@ -29,7 +29,7 @@ export function uploadDocument(file: File, onProgress?: (progress: UploadProgres
         total: event.total,
         percent,
         step: "uploading",
-        message: percent < 100 ? "Uploading document…" : "Finalizing upload…",
+        message: percent < 100 ? "Uploading document..." : "Finalizing upload...",
       });
     };
 
@@ -41,7 +41,7 @@ export function uploadDocument(file: File, onProgress?: (progress: UploadProgres
           total: file.size,
           percent: 100,
           step: "indexing",
-          message: "Indexing uploaded document…",
+          message: "Preparing document for instant search...",
         });
       }
     };
@@ -50,7 +50,7 @@ export function uploadDocument(file: File, onProgress?: (progress: UploadProgres
       if (xhr.status >= 200 && xhr.status < 300) {
         try {
           resolve(JSON.parse(xhr.responseText));
-        } catch (error) {
+        } catch {
           reject(new Error("Invalid upload response."));
         }
       } else {
@@ -73,7 +73,7 @@ export function uploadDocument(file: File, onProgress?: (progress: UploadProgres
       total: file.size,
       percent: 0,
       step: "uploading",
-      message: "Preparing document upload…",
+      message: "Preparing document upload...",
     });
 
     xhr.send(formData);

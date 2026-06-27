@@ -1,7 +1,11 @@
 import logging
 from typing import Any
 
-from redis.asyncio import Redis, ConnectionPool
+try:
+    from redis.asyncio import Redis, ConnectionPool
+except ImportError:  # pragma: no cover
+    Redis = None  # type: ignore
+    ConnectionPool = None  # type: ignore
 
 from app.core.config import settings
 
@@ -15,14 +19,16 @@ class CacheManager:
     async def init_cache(self, redis_url: str):
         if not redis_url:
             return
-            
+        if ConnectionPool is None or Redis is None:
+            logger.error("redis library not installed; cache disabled.")
+            return
         self.pool = ConnectionPool.from_url(
-            redis_url, 
+            redis_url,
             decode_responses=True,
             max_connections=10
         )
         self.redis = Redis(connection_pool=self.pool)
-        
+
         try:
             await self.redis.ping()
             logger.info("Successfully connected to Redis")
@@ -47,5 +53,5 @@ class CacheManager:
         
 cache_manager = CacheManager()
 
-def get_redis() -> Redis | None:
+def get_redis():
     return cache_manager.redis

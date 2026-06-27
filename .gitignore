@@ -7,6 +7,9 @@ node_modules/
 dist/
 build/
 .env
+frontend/.env.local
+*.log
+*.pid
 data/indexes/
 data/papers/
 docs/screenshots/

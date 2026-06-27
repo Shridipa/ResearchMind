@@ -40,6 +40,10 @@ dev = [
 line-length = 100
 target-version = "py310"
 
+[tool.setuptools.packages.find]
+include = ["app*"]
+exclude = ["botocore*"]
+
 [tool.pytest.ini_options]
 testpaths = ["../tests", "tests"]
 pythonpath = ["."]

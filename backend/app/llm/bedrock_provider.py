@@ -3,8 +3,14 @@ import logging
 from typing import AsyncGenerator
 import asyncio
 
-import boto3
-from botocore.exceptions import ClientError
+try:
+    import boto3
+except ImportError:  # pragma: no cover
+    boto3 = None  # type: ignore
+try:
+    from botocore.exceptions import ClientError
+except ImportError:  # pragma: no cover
+    ClientError = Exception  # type: ignore
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
 from app.llm.base_provider import LLMProvider
@@ -28,12 +34,15 @@ class BedrockLLM(LLMProvider):
     
     def __init__(self):
         self.region = settings.aws_region_name
-        self.client = boto3.client(
-            service_name='bedrock-runtime',
-            region_name=self.region,
-            aws_access_key_id=settings.aws_access_key_id,
-            aws_secret_access_key=settings.aws_secret_access_key
-        )
+        if boto3 is None:
+            self.client = None  # type: ignore
+        else:
+            self.client = boto3.client(
+                service_name='bedrock-runtime',
+                region_name=self.region,
+                aws_access_key_id=settings.aws_access_key_id,
+                aws_secret_access_key=settings.aws_secret_access_key
+            )
         self._semaphore = asyncio.Semaphore(10) # Basic rate limiting
 
     def _estimate_cost(self, model_id: str, input_tokens: int, output_tokens: int) -> float:
@@ -74,6 +83,8 @@ class BedrockLLM(LLMProvider):
     async def _invoke_model_async(self, model_id: str, body: dict) -> str:
         async with self._semaphore:
             # We use asyncio.to_thread because boto3 is synchronous
+            if self.client is None:
+                raise ImportError("boto3 is not installed. Bedrock provider is unavailable.")
             try:
                 response = await asyncio.to_thread(
                     self.client.invoke_model,
@@ -82,13 +93,13 @@ class BedrockLLM(LLMProvider):
                     accept="application/json",
                     contentType="application/json"
                 )
-                
+
                 response_body = json.loads(response.get('body').read())
-                
+
                 # Token tracking & Cost Estimation
                 input_tokens = 0
                 output_tokens = 0
-                
+
                 # Parse response based on model
                 if "claude" in model_id.lower():
                     result = response_body.get("content", [{}])[0].get("text", "")
@@ -107,14 +118,14 @@ class BedrockLLM(LLMProvider):
 
                 cost = self._estimate_cost(model_id, input_tokens, output_tokens)
                 logger.info(f"[Bedrock] Model: {model_id} | In: {input_tokens} | Out: {output_tokens} | Cost: ${cost:.6f}")
-                
+
                 return result
-                
             except ClientError as e:
                 error_code = e.response['Error']['Code']
                 if error_code == 'ThrottlingException':
-                    logger.warning("Bedrock rate limit exceeded. Retrying...")
+                    logger.warning("Bedrock rate limit exceeded. Retrying…")
                     raise RateLimitError("Rate limit exceeded")
+                raise
                 raise
 
     def generate(self, system_prompt: str, user_prompt: str, model: str | None = None) -> str:
@@ -136,6 +147,8 @@ class BedrockLLM(LLMProvider):
         _, body = self._prepare_payload(system_prompt, user_prompt, model_id)
         
         async with self._semaphore:
+            if self.client is None:
+                raise ImportError("boto3 is not installed. Bedrock provider is unavailable.")
             try:
                 response = await asyncio.to_thread(
                     self.client.invoke_model_with_response_stream,
@@ -144,17 +157,17 @@ class BedrockLLM(LLMProvider):
                     accept="application/json",
                     contentType="application/json"
                 )
-                
+
                 stream = response.get('body')
                 if not stream:
                     yield "Error: Empty stream"
                     return
-                    
+
                 for event in stream:
                     chunk = event.get('chunk')
                     if chunk:
                         chunk_obj = json.loads(chunk.get('bytes').decode())
-                        
+
                         # Streaming response parsing depends heavily on model
                         if "claude" in model_id.lower():
                             if chunk_obj['type'] == 'content_block_delta':
@@ -163,9 +176,7 @@ class BedrockLLM(LLMProvider):
                             yield chunk_obj.get('outputText', '')
                         elif "nova" in model_id.lower():
                             yield chunk_obj.get('contentBlockDelta', {}).get('delta', {}).get('text', '')
-                            
                 # Note: Streaming cost tracking is more complex as it requires accumulating tokens over stream chunks
-                
             except ClientError as e:
                 logger.error(f"Bedrock streaming error: {e}")
                 yield f"Error: {e}"

@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pytest *)",
+      "Bash(pip install *)",
+      "Bash(python *)",
+      "Bash(del *)",
+      "Bash(npm run *)"
+    ]
+  },
+  "$version": 4
+}

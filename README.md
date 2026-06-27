@@ -10,6 +10,8 @@
 
 ## Architecture Overview
 
+Development is held to the [Engineering Quality Gate](docs/ENGINEERING_QUALITY_GATE.md): every feature must prove integration, security, observability, testing, and UX before it is considered done.
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                     ResearchMind 2.0                         │

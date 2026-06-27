@@ -2,9 +2,9 @@ name: ResearchMind 2.0 CI/CD
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, develop, ResearchMind2.0]
   pull_request:
-    branches: [main]
+    branches: [main, ResearchMind2.0]
 
 env:
   REGISTRY: ghcr.io

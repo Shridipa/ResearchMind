@@ -1,4 +1,3 @@
-import pytest
 
 from app.document_processing.transformer_summary import TransformerSummarizer
 

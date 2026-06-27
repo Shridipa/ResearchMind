@@ -1,8 +1,7 @@
 import pytest
-from unittest.mock import AsyncMock, patch
+from unittest.mock import patch
 
-from app.llm.bedrock_provider import BedrockLLM, RateLimitError
-from botocore.exceptions import ClientError
+from app.llm.bedrock_provider import BedrockLLM
 
 @pytest.fixture
 def bedrock_llm():

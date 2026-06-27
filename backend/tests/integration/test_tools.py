@@ -1,7 +1,5 @@
 import pytest
 from app.tools.registry import tool_registry
-import app.tools.search_tool
-import app.tools.calculator_tool
 
 def test_tool_registration():
     schemas = tool_registry.get_tool_schemas()

@@ -15,7 +15,6 @@ from app.api.v1.schemas import (
 )
 from app.core.config import settings
 import json
-from pathlib import Path
 
 EXPERIMENTS_FILE = settings.data_dir / "experiments.json"
 
@@ -92,7 +91,6 @@ async def evaluate(request: EvaluateRequest) -> EvaluateResponse:
     """Run a real RAGAS-powered evaluation on a question/answer/context triple."""
     from app.evaluation.ragas_evaluator import ragas_evaluator
 
-    context_str = " ".join(request.contexts) if request.contexts else ""
     eval_results = await ragas_evaluator.evaluate_rag_pipeline(
         question=request.question or "",
         response=request.answer or "",

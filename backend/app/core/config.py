@@ -52,6 +52,8 @@ class Settings(BaseSettings):
     chunk_size: int = 900
     chunk_overlap: int = 160
     request_timeout: int = 30
+    enable_demo_guest_access: bool = Field(default=True)
+    demo_guest_token: str = Field(default="researchmind-demo-guest", repr=False)
 
     @property
     def openrouter_default_model(self) -> str:

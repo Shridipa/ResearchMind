@@ -3,7 +3,6 @@ Redis-backed Event Bus.
 Publishers push events to Redis channels.
 Subscribers (workers/WebSocket handlers) listen to channels.
 """
-import asyncio
 import json
 import logging
 from typing import Callable, Any

@@ -10,13 +10,9 @@ from app.services.realtime_service import publish_ingestion_progress, publish_ac
 
 logger = logging.getLogger(__name__)
 
-STAGES = [
-    ("UPLOADING", 5),
-    ("QUEUED", 10),
-    ("EXTRACTING", 25),
-    ("CHUNKING", 40),
-    ("EMBEDDING", 65),
-    ("INDEXING", 85),
+INLINE_FALLBACK_STAGES = [
+    ("UPLOADING", 10),
+    ("PROCESSING", 55),
     ("SEARCH_READY", 100),
 ]
 
@@ -63,15 +59,8 @@ class IngestionService:
         self, job_id: str, document_id: str, workspace_id: str, document_name: str, uploaded_by: str
     ):
         """Process ingestion in-process when Celery/Redis workers are unavailable."""
-        import asyncio as aio
-
-        fast_stages = [
-            ("UPLOADING", 10),
-            ("PROCESSING", 55),
-            ("SEARCH_READY", 100),
-        ]
-        for stage, progress in fast_stages:
-            await aio.sleep(0.25)
+        for stage, progress in INLINE_FALLBACK_STAGES:
+            await asyncio.sleep(0.25)
             demo_store.update_ingestion_job(job_id, stage, progress)
             publish_ingestion_progress(
                 job_id=job_id,
@@ -90,7 +79,7 @@ class IngestionService:
             status="COMPLETED",
             progress=100,
         )
-        publish_activity(workspace_id, "DOCUMENT_INDEXED", f"{document_name} is now searchable", "System")
+        publish_activity(workspace_id, "DOCUMENT_INDEXED", f"{document_name} is now searchable", uploaded_by)
         logger.info("Inline ingestion completed job=%s", job_id)
 
     async def get_job_status(self, job_id: str, db=None) -> dict | None:

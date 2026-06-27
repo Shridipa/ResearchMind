@@ -19,7 +19,6 @@ from app.core.config import settings
 from app.document_processing.citations import extract_citations
 from app.document_processing.pdf_parser import PdfParser
 from app.document_processing.extractive import ResearchPaperExtractor
-from app.document_processing.summarizer import LocalSummarizer
 from app.rag.chunking import AdaptiveChunker
 from app.rag.generator import GroundedGenerator
 from app.rag.paper_comparator import PaperComparator

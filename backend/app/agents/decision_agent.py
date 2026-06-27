@@ -13,8 +13,7 @@ class DecisionAgent(BaseAgent):
 
     async def run(self, state: Dict[str, Any]) -> Dict[str, Any]:
         logger.info("Decision Agent running...")
-        analysis = state.get("analysis", "")
-        
+
         # Simulated recommendations
         recommendations = [
             "Diversify supply chain to mitigate Q3 risks.",

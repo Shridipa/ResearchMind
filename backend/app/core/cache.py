@@ -1,5 +1,4 @@
 import logging
-from typing import Any
 
 try:
     from redis.asyncio import Redis, ConnectionPool
@@ -7,7 +6,6 @@ except ImportError:  # pragma: no cover
     Redis = None  # type: ignore
     ConnectionPool = None  # type: ignore
 
-from app.core.config import settings
 
 logger = logging.getLogger(__name__)
 

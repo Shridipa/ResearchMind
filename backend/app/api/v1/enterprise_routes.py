@@ -6,14 +6,14 @@ import uuid
 from datetime import datetime, timezone
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, status
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from fastapi.security import OAuth2PasswordRequestForm
 from pydantic import BaseModel
 
 from app.auth.dependencies import get_current_user, require_permission, require_role
 from app.auth.rbac import Permission, Role
 from app.auth.jwt_handler import create_access_token, create_refresh_token, hash_password
-from app.services.demo_store import demo_store, DEMO_WORKSPACE_ID, DEMO_USER_ID, DEMO_EMAIL
+from app.services.demo_store import demo_store, DEMO_WORKSPACE_ID, DEMO_EMAIL
 from app.services.ingestion_service import IngestionService
 from app.services.realtime_service import publish_activity, publish_research_progress, publish_notification
 

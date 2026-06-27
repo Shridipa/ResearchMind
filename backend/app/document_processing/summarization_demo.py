@@ -1,6 +1,5 @@
 """Test and demonstration of local summarization capabilities."""
 
-import sys
 from pathlib import Path
 
 # Sample research paper text (section about transformers)
@@ -100,7 +99,7 @@ def test_local_summarizer():
     
     # Estimate cost savings
     savings = estimate_api_cost_saved(len(SAMPLE_TEXT), num_summaries=1)
-    print(f"\n\nEstimated API Cost Savings:")
+    print("\n\nEstimated API Cost Savings:")
     print(f"  Tokens Avoided: {savings['estimated_tokens']:.0f}")
     print(f"  Cost Saved: ${savings['estimated_cost_usd']:.4f}")
     print(f"  API Calls Avoided: {savings['api_calls_avoided']}\n")

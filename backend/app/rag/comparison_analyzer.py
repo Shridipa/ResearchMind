@@ -1,7 +1,6 @@
 """Core paper comparison analysis."""
 
 from dataclasses import dataclass, field
-from typing import Optional
 from enum import Enum
 
 from app.rag.embeddings import EmbeddingModel
@@ -347,7 +346,7 @@ class ComparisonAnalyzer:
             recs.append("These papers approach different problems. Use them for complementary context.")
         
         if relationship == "building_on":
-            recs.append(f"Paper 2 likely improves upon paper 1's approach.")
+            recs.append("Paper 2 likely improves upon paper 1's approach.")
             if distinctive_p2:
                 recs.append(f"Key differences: {', '.join(distinctive_p2[:3])}")
         

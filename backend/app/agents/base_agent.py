@@ -1,5 +1,4 @@
 from typing import Any, Dict, List, Optional
-from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 from app.llm.provider_factory import get_llm_provider
 
 class BaseAgent:

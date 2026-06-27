@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Integer, ForeignKey, JSON
 from .base import BaseModel
@@ -10,7 +12,7 @@ class Document(BaseModel):
     file_type: Mapped[str] = mapped_column(String(50), nullable=False)
     
     workspace_id: Mapped[str] = mapped_column(ForeignKey("workspaces.id"), nullable=False)
-    workspace: Mapped["Workspace"] = relationship(back_populates="documents")
+    workspace: Mapped["Workspace"] = relationship(back_populates="documents")  # noqa: F821
 
     versions: Mapped[List["DocumentVersion"]] = relationship(back_populates="document")
     ingestion_jobs: Mapped[List["IngestionJob"]] = relationship(back_populates="document")

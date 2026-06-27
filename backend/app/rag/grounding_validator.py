@@ -1,10 +1,8 @@
 """Unified grounding validation system for research answers."""
 
 from dataclasses import dataclass
-from typing import Optional
 
 from app.rag.chunking import DocumentChunk
-from app.rag.claim_extractor import ClaimExtractor
 from app.rag.embeddings import EmbeddingModel
 from app.rag.evidence_matcher import EvidenceMatcher, ResearchGroundingValidator
 

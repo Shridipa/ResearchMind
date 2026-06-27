@@ -87,7 +87,7 @@ def test_basic_comparison():
     for section_name, comp in result.section_comparisons.items():
         print(f"  {section_name}: {comp.similarity_score*100:.1f}% similarity")
     
-    print(f"\nRecommendations:")
+    print("\nRecommendations:")
     for i, rec in enumerate(result.recommendations, 1):
         print(f"  {i}. {rec}")
 

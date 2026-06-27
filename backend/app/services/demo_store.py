@@ -9,7 +9,6 @@ import logging
 import threading
 import uuid
 from datetime import datetime, timezone
-from pathlib import Path
 from typing import Any
 
 from app.auth.jwt_handler import hash_password, verify_password

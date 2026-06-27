@@ -7,7 +7,7 @@ import {
   Zap, Shield, BarChart3, Users, GitBranch, Layers, Radio,
   Lock, Activity, Server, ArrowRight, CheckCircle,
 } from 'lucide-react'
-import { useAppStore, GUEST_ACCESS_TOKEN, GUEST_REFRESH_TOKEN, GUEST_USER } from '@/store/appStore'
+import { useAppStore } from '@/store/appStore'
 
 const FEATURES = [
   { name: 'Hybrid Retrieval', desc: 'Dense semantic search combined with sparse BM25 for maximum recall.' },
@@ -86,14 +86,12 @@ const PIPELINE = ['Upload', 'Queue', 'AI Processing', 'Vector Index', 'Search', 
 
 export default function LandingPageClient() {
   const router = useRouter()
-  const { setUser, setAccessToken, setRefreshToken, addNotification } = useAppStore()
+  const { startGuestSession, addNotification } = useAppStore()
   const [loading, setLoading] = useState(false)
 
   const openDashboard = () => {
     setLoading(true)
-    setUser(GUEST_USER)
-    setAccessToken(GUEST_ACCESS_TOKEN)
-    setRefreshToken(GUEST_REFRESH_TOKEN)
+    startGuestSession()
     addNotification({ type: 'success', title: 'Dashboard Opened', message: 'Guest workspace loaded instantly. No sign in required.' })
     router.push('/dashboard')
   }

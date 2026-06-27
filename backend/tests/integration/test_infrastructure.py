@@ -1,6 +1,5 @@
 import pytest
-from sqlalchemy.ext.asyncio import AsyncSession
-from app.core.database import db_manager, get_db_session
+from app.core.database import db_manager
 from app.core.cache import cache_manager, get_redis
 from app.core.config import settings
 

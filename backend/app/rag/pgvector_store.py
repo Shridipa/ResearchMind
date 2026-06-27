@@ -1,6 +1,5 @@
 import logging
-from typing import List, Dict, Any
-from sqlalchemy.ext.asyncio import AsyncSession
+from typing import List
 from sqlalchemy import text
 
 logger = logging.getLogger(__name__)

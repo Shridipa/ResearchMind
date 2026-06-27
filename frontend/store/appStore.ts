@@ -55,6 +55,7 @@ interface AppState {
   setUser: (user: AuthUser | null) => void
   setAccessToken: (token: string | null) => void
   setRefreshToken: (token: string | null) => void
+  startGuestSession: () => void
   logout: () => void
 
   ws: WebSocket | null
@@ -96,6 +97,11 @@ export const useAppStore = create<AppState>()(
       setUser: (user) => set({ user }),
       setAccessToken: (accessToken) => set({ accessToken }),
       setRefreshToken: (refreshToken) => set({ refreshToken }),
+      startGuestSession: () => set({
+        user: GUEST_USER,
+        accessToken: GUEST_ACCESS_TOKEN,
+        refreshToken: GUEST_REFRESH_TOKEN,
+      }),
       logout: () => {
         const { ws } = get()
         if (ws) ws.close()

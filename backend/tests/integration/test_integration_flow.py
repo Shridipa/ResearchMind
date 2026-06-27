@@ -157,7 +157,6 @@ def test_upload_query_delete(tmp_path, monkeypatch):
 def test_multi_paper_comparison(tmp_path, monkeypatch):
     """Upload two papers and verify the compare flow returns sources for both."""
     from app.services.paper_service import paper_service
-    from app.services.paper_registry import paper_registry
 
     vs = _patch_dependencies(tmp_path, monkeypatch)
 

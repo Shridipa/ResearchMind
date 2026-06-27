@@ -1,22 +1,20 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useAppStore, DEMO_WORKSPACE_ID, GUEST_ACCESS_TOKEN, GUEST_USER } from '@/store/appStore'
+import { useAppStore, DEMO_WORKSPACE_ID } from '@/store/appStore'
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const { accessToken, user, setAccessToken, setRefreshToken, setUser, connectWebSocket } = useAppStore()
+  const { accessToken, user, startGuestSession, connectWebSocket } = useAppStore()
 
   useEffect(() => {
     if (!accessToken) {
-      setUser(GUEST_USER)
-      setAccessToken(GUEST_ACCESS_TOKEN)
-      setRefreshToken(null)
+      startGuestSession()
       return
     }
     const wsId = user?.workspaceId ?? DEMO_WORKSPACE_ID
     connectWebSocket(wsId)
     return () => useAppStore.getState().disconnectWebSocket()
-  }, [accessToken, user?.workspaceId, connectWebSocket, setAccessToken, setRefreshToken, setUser])
+  }, [accessToken, user?.workspaceId, connectWebSocket, startGuestSession])
 
   if (!accessToken) {
     return (

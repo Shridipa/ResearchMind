@@ -1,6 +1,5 @@
 """Hybrid retrieval evaluation comparing semantic, BM25, and hybrid approaches."""
 
-from pathlib import Path
 from app.rag.embeddings import build_embedder
 from app.rag.vector_store import FaissVectorStore
 from app.rag.bm25_index import BM25Index
@@ -62,19 +61,19 @@ def evaluate_retrieval_modes():
         # Hybrid (best)
         hybrid_results = hybrid_retriever.retrieve(query, top_k=3, retrieval_mode="hybrid")
         
-        print(f"\n  SEMANTIC ONLY (top-1):")
+        print("\n  SEMANTIC ONLY (top-1):")
         if semantic_results:
             chunk, score, stats = semantic_results[0]
             print(f"    Score: {stats.final_score:.4f}")
             print(f"    Text: {chunk.text[:100]}...")
         
-        print(f"\n  BM25 ONLY (top-1):")
+        print("\n  BM25 ONLY (top-1):")
         if bm25_results:
             chunk, score, stats = bm25_results[0]
             print(f"    Score: {stats.final_score:.4f}")
             print(f"    Text: {chunk.text[:100]}...")
         
-        print(f"\n  HYBRID (RECOMMENDED) (top-1):")
+        print("\n  HYBRID (RECOMMENDED) (top-1):")
         if hybrid_results:
             chunk, score, stats = hybrid_results[0]
             print(f"    Final Score: {stats.final_score:.4f}")

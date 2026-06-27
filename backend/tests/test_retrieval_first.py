@@ -2,12 +2,10 @@
 
 import sys
 from pathlib import Path
-from unittest.mock import patch, MagicMock
 
 backend_dir = Path(__file__).parent.parent
 sys.path.insert(0, str(backend_dir))
 
-import pytest
 from app.services.rag_service import rag_service
 from app.api.v1.schemas import ChatRequest
 

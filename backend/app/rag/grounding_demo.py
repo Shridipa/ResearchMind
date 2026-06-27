@@ -1,6 +1,5 @@
 """Test and demonstration of citation-grounded answer validation."""
 
-from pathlib import Path
 
 from app.rag.chunking import DocumentChunk
 from app.rag.claim_extractor import ClaimExtractor, FactualClaimExtractor
@@ -8,7 +7,6 @@ from app.rag.embeddings import build_embedder
 from app.rag.grounding_validator import (
     GroundingValidator,
     GroundingIndicator,
-    get_grounding_stats,
 )
 
 
@@ -111,13 +109,13 @@ def test_grounding_validation():
     print(f"Groundedness Score: {result.groundedness_score:.1f}%")
     print(f"Hallucination Risk: {result.hallucination_risk:.1f}%")
     print(f"Risk Level: {result.risk_level.upper()}")
-    print(f"\nClaim Analysis:")
+    print("\nClaim Analysis:")
     print(f"  Total Claims: {result.total_claims}")
     print(f"  Supported: {result.supported_claims}")
     print(f"  Unsupported: {result.unsupported_claims}")
     print(f"  Support Rate: {result.support_percentage:.1f}%")
     
-    print(f"\nRecommendations:")
+    print("\nRecommendations:")
     for i, rec in enumerate(result.recommendations, 1):
         print(f"  {i}. {rec}")
 

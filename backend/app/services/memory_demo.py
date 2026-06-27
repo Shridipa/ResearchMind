@@ -4,7 +4,7 @@ import uuid
 from datetime import datetime
 
 from app.services.session_memory import SessionMemoryStore, ConversationTurn
-from app.services.topic_graph import TopicGraph, ReasoningPath
+from app.services.topic_graph import TopicGraph
 from app.services.reasoning_engine import MultiTurnReasoningEngine
 from app.rag.embeddings import build_embedder
 
@@ -97,7 +97,7 @@ def test_topic_graph():
     
     # Analyze graph
     summary = graph.get_graph_summary()
-    print(f"Graph Summary:")
+    print("Graph Summary:")
     print(f"  Total Concepts: {summary['total_concepts']}")
     print(f"  Total Relationships: {summary['total_edges']}")
     print(f"  Average Degree: {summary['average_degree']:.2f}\n")
@@ -111,7 +111,7 @@ def test_topic_graph():
         print(f"  {cluster_id}: {', '.join(concepts)}")
     
     # Find divergence points
-    print(f"\nDivergence Points:")
+    print("\nDivergence Points:")
     divergences = graph.get_divergence_points()
     for div in divergences:
         print(f"  {div['turn']}: Introduced {', '.join(div['new_concepts'])}")
@@ -170,7 +170,7 @@ def test_reasoning_engine():
             grounding_score=turn["grounding"],
         )
         
-        print(f"  ✓ Added to session")
+        print("  ✓ Added to session")
         print(f"  Concepts tracked: {len(ctx.topic_graph.concepts)}")
         print(f"  Papers cited: {', '.join(ctx.recent_papers)}\n")
     
@@ -193,7 +193,7 @@ def test_follow_up_generation():
     engine = MultiTurnReasoningEngine(memory_store, embedder)
     
     session_id = f"session_{uuid.uuid4().hex[:8]}"
-    ctx = engine.initialize_session(session_id, "Research Session")
+    engine.initialize_session(session_id, "Research Session")
     
     # Add some turns
     engine.process_turn(
@@ -232,7 +232,7 @@ def test_context_accumulation():
     engine = MultiTurnReasoningEngine(memory_store, embedder)
     
     session_id = f"session_{uuid.uuid4().hex[:8]}"
-    ctx = engine.initialize_session(session_id, "Knowledge Accumulation")
+    engine.initialize_session(session_id, "Knowledge Accumulation")
     
     # Simulate conversation
     questions = [

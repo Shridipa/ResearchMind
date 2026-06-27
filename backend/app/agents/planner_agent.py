@@ -15,10 +15,7 @@ Output a JSON list of subtasks."""
 
     async def run(self, state: Dict[str, Any]) -> Dict[str, Any]:
         logger.info("Planner Agent running...")
-        user_input = state.get("input", "")
-        
-        prompt = f"Decompose this task: {user_input}"
-        
+
         # We would normally invoke the LLM here to get the JSON array of subtasks
         # response = await self.llm.generate(self.system_prompt, prompt)
         # For Phase 3, we simulate the LLM's structured output based on the prompt's example:

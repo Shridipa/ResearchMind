@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass
 from datetime import datetime
-import uuid
+from typing import Optional
 
 from app.services.session_memory import SessionMemoryStore, ConversationTurn, ConversationContext
 from app.services.topic_graph import TopicGraph, ReasoningPath
@@ -54,7 +54,7 @@ class MultiTurnReasoningEngine:
     def initialize_session(self, session_id: str, title: str = "") -> ReasoningContext:
         """Start a new reasoning session."""
         # Create session in memory store
-        session = self.memory_store.create_session(
+        self.memory_store.create_session(
             session_id,
             title=title or f"Research Session {session_id}",
         )
@@ -128,7 +128,7 @@ class MultiTurnReasoningEngine:
                 # Get embedding for concept if available
                 concept_emb = self.embedder.embed(concept)
                 graph.add_concept(concept, turn_id, concept_emb)
-            except:
+            except Exception:
                 graph.add_concept(concept, turn_id)
         
         # Add relationships between concepts
@@ -256,6 +256,3 @@ class MultiTurnReasoningEngine:
         
         return path.visualize()
 
-
-# Type hint
-Optional = type(None)

@@ -3,7 +3,6 @@
 from dataclasses import dataclass
 from typing import Optional
 
-import numpy as np
 
 from app.rag.bm25_index import BM25Index
 from app.rag.chunking import DocumentChunk

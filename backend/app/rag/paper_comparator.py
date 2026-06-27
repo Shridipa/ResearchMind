@@ -148,7 +148,7 @@ class PaperComparator:
         
         # Shared concepts
         if result.shared_concepts:
-            summary_parts.append(f"\n**Shared Concepts:**\n")
+            summary_parts.append("\n**Shared Concepts:**\n")
             for concept in result.shared_concepts[:5]:
                 summary_parts.append(f"- {concept}\n")
         
@@ -165,7 +165,7 @@ class PaperComparator:
         
         # Recommendations
         if result.recommendations:
-            summary_parts.append(f"\n**Recommendations:**\n")
+            summary_parts.append("\n**Recommendations:**\n")
             for rec in result.recommendations:
                 summary_parts.append(f"- {rec}\n")
         

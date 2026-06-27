@@ -2,7 +2,6 @@
 
 from typing import Optional
 
-import numpy as np
 from sentence_transformers import CrossEncoder, util
 
 from app.rag.chunking import DocumentChunk

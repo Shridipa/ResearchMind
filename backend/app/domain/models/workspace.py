@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, ForeignKey
 from .base import BaseModel
@@ -10,10 +12,10 @@ class Workspace(BaseModel):
     description: Mapped[str] = mapped_column(String(1000), nullable=True)
 
     organization_id: Mapped[str] = mapped_column(ForeignKey("organizations.id"), nullable=False)
-    organization: Mapped["Organization"] = relationship(back_populates="workspaces")
+    organization: Mapped["Organization"] = relationship(back_populates="workspaces")  # noqa: F821
 
     members: Mapped[List["WorkspaceMember"]] = relationship(back_populates="workspace")
-    documents: Mapped[List["Document"]] = relationship(back_populates="workspace")
+    documents: Mapped[List["Document"]] = relationship(back_populates="workspace")  # noqa: F821
 
 class WorkspaceMember(BaseModel):
     __tablename__ = "workspace_members"
@@ -22,5 +24,5 @@ class WorkspaceMember(BaseModel):
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), nullable=False)
     role: Mapped[str] = mapped_column(String(50), nullable=False) # e.g., WORKSPACE_ADMIN, RESEARCHER, VIEWER
 
-    workspace: Mapped["Workspace"] = relationship(back_populates="members")
-    user: Mapped["User"] = relationship(back_populates="workspace_memberships")
+    workspace: Mapped["Workspace"] = relationship(back_populates="members")  # noqa: F821
+    user: Mapped["User"] = relationship(back_populates="workspace_memberships")  # noqa: F821

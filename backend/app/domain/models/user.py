@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Boolean, ForeignKey
 from .base import BaseModel
@@ -10,7 +12,7 @@ class Organization(BaseModel):
     domain: Mapped[str] = mapped_column(String(255), nullable=True)
 
     users: Mapped[List["User"]] = relationship(back_populates="organization")
-    workspaces: Mapped[List["Workspace"]] = relationship(back_populates="organization")
+    workspaces: Mapped[List["Workspace"]] = relationship(back_populates="organization")  # noqa: F821
 
 class User(BaseModel):
     __tablename__ = "users"
@@ -23,6 +25,6 @@ class User(BaseModel):
     is_superuser: Mapped[bool] = mapped_column(Boolean, default=False)
     
     organization_id: Mapped[str] = mapped_column(ForeignKey("organizations.id"), nullable=True)
-    organization: Mapped["Organization"] = relationship(back_populates="users")
+    organization: Mapped["Organization"] = relationship(back_populates="users")  # noqa: F821
 
-    workspace_memberships: Mapped[List["WorkspaceMember"]] = relationship(back_populates="user")
+    workspace_memberships: Mapped[List["WorkspaceMember"]] = relationship(back_populates="user")  # noqa: F821

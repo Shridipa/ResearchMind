@@ -1,5 +1,5 @@
 import pytest
-from app.graphs.enterprise_graph import build_enterprise_graph, EnterpriseGraphState
+from app.graphs.enterprise_graph import build_enterprise_graph
 
 @pytest.mark.asyncio
 async def test_enterprise_graph_execution():

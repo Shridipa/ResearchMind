@@ -2,6 +2,7 @@
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 
+from app.core.config import settings
 from app.auth.jwt_handler import decode_token
 from app.auth.rbac import Permission, Role, has_permission
 
@@ -19,8 +20,14 @@ DEMO_GUEST_PAYLOAD = {
 
 async def get_current_user(token: str | None = Depends(oauth2_scheme)) -> dict:
     """Decode JWT and return the token payload (user info)."""
-    if not token or token == "researchmind-demo-guest":
+    if token == settings.demo_guest_token and settings.enable_demo_guest_access:
         return DEMO_GUEST_PAYLOAD.copy()
+
+    if not token:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication required",
+        )
 
     payload = decode_token(token)
     user_id: str | None = payload.get("sub")

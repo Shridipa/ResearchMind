@@ -1,160 +1,21 @@
 {
-  "9d27b48c21974a45abee29dcb458872a": {
-    "paper_id": "9d27b48c21974a45abee29dcb458872a",
-    "filename": "Research Paper - 6.pdf",
-    "title": "Research Paper - 6",
-    "chunks_indexed": 164,
-    "citations_found": 0,
-    "file_path": "..\\data\\papers\\9d27b48c21974a45abee29dcb458872a.pdf",
-    "status": "indexed",
-    "processing_state": "ready",
-    "embedding_status": "indexed",
-    "upload_date": "2026-05-27T06:15:48.362396+00:00",
-    "authors": [],
-    "abstract": "Abstract extraction will be populated from the parsed first-page evidence.",
-    "sections": [
-      "Abstract",
-      "Introduction",
-      "Methodology",
-      "Results",
-      "Limitations"
-    ],
-    "methodology": "Run Summarize to generate a grounded methodology view from retrieved source chunks.",
-    "limitations": [],
-    "key_contributions": [],
-    "citations": [],
-    "summary": {
-      "abstract": "only modest support for hypothesis H3, even after controlling for other influences. Table 5 shows results from testing hypothesis H4 in a multivariate setting. The table reports the difference in coefficients between the first left-digit change around two-digit integers and the first left-digit change around one-digit integers. We find that the first left-digit change is stronger around two-digit integers than around one-digit integers in 9 out of 12 cases. In all 3 of the cases in which the sign is not correctly predicted, the result is not statistically significant. Out of the 9 cases in which the sign is correctly predicted, statistical significance exists for 8 of them. On balance, this ",
-      "contributions": [
-        "Identify the paper's main claims from retrieved evidence."
-      ],
-      "methods": "Methods are inferred from the highest-scoring retrieved chunks.",
-      "findings": "Findings should be generated with a configured LLM provider.",
-      "limitations": "Limitations require explicit support from retrieved source spans."
-    }
-  },
-  "eb11e7b1b6a0473c81a8ff8ca29c2d81": {
-    "paper_id": "eb11e7b1b6a0473c81a8ff8ca29c2d81",
-    "filename": "Analysts' Factor Model _ WorldQuant BRAIN.pdf",
-    "title": "Analysts' Factor Model _ WorldQuant BRAIN",
-    "chunks_indexed": 4,
-    "citations_found": 0,
-    "file_path": "..\\data\\papers\\eb11e7b1b6a0473c81a8ff8ca29c2d81.pdf",
-    "status": "indexed",
-    "processing_state": "ready",
-    "embedding_status": "indexed",
-    "upload_date": "2026-05-27T17:32:57.272713+00:00",
-    "authors": [],
-    "abstract": "Abstract extraction will be populated from the parsed first-page evidence.",
-    "sections": [
-      "Abstract",
-      "Introduction",
-      "Methodology",
-      "Results",
-      "Limitations"
-    ],
-    "methodology": "Run Summarize to generate a grounded methodology view from retrieved source chunks.",
-    "limitations": [],
-    "key_contributions": [],
-    "citations": [],
-    "summary": null
-  },
-  "6890a9c4cee640018c43cf598b8b5b14": {
-    "paper_id": "6890a9c4cee640018c43cf598b8b5b14",
-    "filename": "Research Paper - 6.pdf",
-    "title": "Research Paper - 6",
-    "chunks_indexed": 164,
-    "citations_found": 0,
-    "file_path": "..\\data\\papers\\6890a9c4cee640018c43cf598b8b5b14.pdf",
-    "status": "indexed",
-    "processing_state": "ready",
-    "embedding_status": "indexed",
-    "upload_date": "2026-05-27T18:42:20.462913+00:00",
-    "authors": [],
-    "abstract": "Abstract extraction will be populated from the parsed first-page evidence.",
-    "sections": [
-      "Abstract",
-      "Introduction",
-      "Methodology",
-      "Results",
-      "Limitations"
-    ],
-    "methodology": "Run Summarize to generate a grounded methodology view from retrieved source chunks.",
-    "limitations": [],
-    "key_contributions": [],
-    "citations": [],
-    "summary": null
-  },
-  "38b841f63c31493f8e25994abff1d4b8": {
-    "paper_id": "38b841f63c31493f8e25994abff1d4b8",
-    "filename": "research paper 8.pdf",
-    "title": "research paper 8",
-    "chunks_indexed": 216,
-    "citations_found": 0,
-    "file_path": "..\\data\\papers\\38b841f63c31493f8e25994abff1d4b8.pdf",
-    "status": "indexed",
-    "processing_state": "ready",
-    "embedding_status": "indexed",
-    "upload_date": "2026-05-27T18:49:53.397360+00:00",
-    "authors": [],
-    "abstract": "Abstract extraction will be populated from the parsed first-page evidence.",
-    "sections": [
-      "Abstract",
-      "Introduction",
-      "Methodology",
-      "Results",
-      "Limitations"
-    ],
-    "methodology": "Run Summarize to generate a grounded methodology view from retrieved source chunks.",
-    "limitations": [],
-    "key_contributions": [],
-    "citations": [],
-    "summary": {
-      "contributions": "ports the results from a series of standard Fama\u2013MacBeth (1973) cross-sectional type regressions that simultaneously control for multiple explanatory variables 18This again is also consistent with the idea that RSJ provides a more accurate proxy for some underlying latent factor that drives the returns, as discussed more formally in Appendix A 3",
-      "methodology": ".Also, the di\ufb00erence in the alphas between small and large \ufb01rms equals 32 49 bps per week, with a highly statistically signi\ufb01cant t-statistic of 4 These results are consistent with the idea that large \ufb01rms tend to have better information environments and more sophisticated traders, resulting in less overreaction to extreme price movements, and thus weaker RSJ e\ufb00ects",
-      "results": "com/abstract=2565660\nls about the data and the variable construction, along with more in depth econometric discussions of some of the empirical \ufb01ndings, are deferred to an Appendix These results are consistent with the idea that large \ufb01rms tend to have better information environments and more sophisticated traders, resulting in less overreaction to extreme price movements, and thus weaker RSJ e\ufb00ects .Panel B reports the results of multiple regressions with more than one explanatory variable",
-      "limitations": "Not explicitly mentioned."
-    }
-  },
-  "414ec9adb7f74465bae7dec7b78f2e02": {
-    "paper_id": "414ec9adb7f74465bae7dec7b78f2e02",
-    "filename": "38b841f63c31493f8e25994abff1d4b8.pdf",
-    "title": "38b841f63c31493f8e25994abff1d4b8",
-    "chunks_indexed": 216,
-    "citations_found": 0,
-    "file_path": "..\\data\\papers\\414ec9adb7f74465bae7dec7b78f2e02.pdf",
-    "status": "indexed",
-    "processing_state": "ready",
-    "embedding_status": "indexed",
-    "upload_date": "2026-05-28T04:43:29.244882+00:00",
-    "authors": [],
-    "abstract": "Abstract extraction will be populated from the parsed first-page evidence.",
-    "sections": [
-      "Abstract",
-      "Introduction",
-      "Methodology",
-      "Results",
-      "Limitations"
-    ],
-    "methodology": "Run Summarize to generate a grounded methodology view from retrieved source chunks.",
-    "limitations": [],
-    "key_contributions": [],
-    "citations": [],
-    "summary": null
-  },
-  "b748633298eb408c9d6f2e4b5fe2d8b0": {
-    "paper_id": "b748633298eb408c9d6f2e4b5fe2d8b0",
-    "filename": "Research Paper 1.pdf",
-    "title": "Research Paper 1",
+  "b45be7db90234464b278044b011577f2": {
+    "paper_id": "b45be7db90234464b278044b011577f2",
+    "filename": "0891d20b45eb4d0f8c8c8140254a2d95.pdf",
+    "title": "The Momentum of News",
     "chunks_indexed": 206,
     "citations_found": 3,
-    "file_path": "..\\data\\papers\\b748633298eb408c9d6f2e4b5fe2d8b0.pdf",
+    "file_path": "C:\\Users\\Admin\\AppData\\Local\\Temp\\pytest-of-Admin\\pytest-3\\test_out_of_domain_protection0\\data\\papers\\b45be7db90234464b278044b011577f2.pdf",
     "status": "indexed",
     "processing_state": "ready",
     "embedding_status": "indexed",
-    "upload_date": "2026-05-28T06:52:17.419398+00:00",
-    "authors": [],
-    "abstract": "Abstract extraction will be populated from the parsed first-page evidence.",
+    "upload_date": "2026-06-29T15:26:21.291655+00:00",
+    "authors": [
+      "Ying Wang",
+      "Bohui Zhang",
+      "Xiaoneng Zhu"
+    ],
+    "abstract": "Relying on a comprehensive data set of news releases, we construct monthly firm-level news \nsentiment scores during the 2000\u20132016 period and document a news momentum phenomenon of \nstocks with more positive news in the past generating more positive news in the future. We \npropose three hypotheses to explain this phenomenon and find that news momentum is driven by \nthe persistence of firms\u2019 fundamentals rather than stale news or firms\u2019 strategic disclosure. A \ntrading strategy that combines a long position in a good news quintile portfolio with a short \nposition in a bad news portfolio generates a 7.45% risk-adjusted return annually. This return \nanomaly appears on both news and non-news days. Overall, these findings suggest that the cross-\nsectional prediction of news is not fully incorporated into the stock price by investors. \n \nKeywords: News; Momentum; Fundamentals; Information Environments; Future Returns \nJEL Code: G02; G10; G14 \n \n \n \n \n \n \n \n \n \nElectronic copy available at: https://ssrn.com/abstract=3267337\n1",
     "sections": [
       "Abstract",
       "Introduction",
@@ -162,41 +23,19 @@
       "Results",
       "Limitations"
     ],
-    "methodology": "Run Summarize to generate a grounded methodology view from retrieved source chunks.",
-    "limitations": [],
-    "key_contributions": [],
-    "citations": [],
+    "methodology": "com/abstract=3267337\n37 \n \nTable 6: Strategic disclosure \n \nThis table presents the momentum effects of news by different information environments using the independent double \nsorting approach com/abstract=3267337\n49 \n \nTable IA4: News and Firm Fundamentals\u2014Regression Approach \nThis table examines the relation between the news (Newst) and firm fundamentals (ROA, SUE) using pool regressions .We then compute the equally weighted next month (or \nweek, or day) average return (Rt+1), CAPM alpha (RCAPM, t+1), Fama and French three factor alpha (RFF3, t+1), \nfour factor alpha (RFF4, t+1) and five factor alpha (RFF5, t+1) for each GMB portfolio",
+    "limitations": [
+      ".We then compute the \nequally weighted average news score of each portfolio",
+      ".The release of \nstale information becomes meaningful when investors cannot appropriately distinguish between \nnew and old information due to limited attention or other reasons (e"
+    ],
+    "key_contributions": [
+      ".We \npropose three hypotheses to explain this phenomenon and find that news momentum is driven by \nthe persistence of firms\u2019 fundamentals rather than stale news or firms\u2019 strategic disclosure .Overall, these findings suggest that the cross-\nsectional prediction of news is not fully incorporated into the stock price by investors Keywords: News; Momentum; Fundamentals; Information Environments; Future Returns \nJEL Code: G02; G10; G14 \n \n \n \n \n \n \n \n \n \nElectronic copy available at: https://ssrn"
+    ],
+    "citations": [
+      "(Amihud, 2002)",
+      "(Edmans et al., 2018)",
+      "[0, \n1]"
+    ],
     "summary": null
-  },
-  "b494a834595a4019ae9079c1873407dd": {
-    "paper_id": "b494a834595a4019ae9079c1873407dd",
-    "filename": "Research Paper 1.pdf",
-    "title": "Research Paper 1",
-    "chunks_indexed": 206,
-    "citations_found": 3,
-    "file_path": "..\\data\\papers\\b494a834595a4019ae9079c1873407dd.pdf",
-    "status": "indexed",
-    "processing_state": "ready",
-    "embedding_status": "indexed",
-    "upload_date": "2026-05-28T14:35:16.648480+00:00",
-    "authors": [],
-    "abstract": "Abstract extraction will be populated from the parsed first-page evidence.",
-    "sections": [
-      "Abstract",
-      "Introduction",
-      "Methodology",
-      "Results",
-      "Limitations"
-    ],
-    "methodology": "Run Summarize to generate a grounded methodology view from retrieved source chunks.",
-    "limitations": [],
-    "key_contributions": [],
-    "citations": [],
-    "summary": {
-      "contributions": "32 Table 1: Summary Statistics This table presents the summary statistics of main variables used in this study .The differences in future SUEs between the good and bad News portfolios are all statistically significant at the 1% level .For example, a news article on a corruption scandal involving a firm\u2019s executives is associated with a low news sentiment score, and a news article regarding the successful development of a firm\u2019s new product is associated with a high news sentiment score",
-      "methodology": "Fama and MacBeth (1973) approach: to ensure the robustness of our findings presented in the portfolio approach, we also use the multivariate Fama and MacBeth (1973) regressions to check whether news sentiment predicts future stock returns .However, our main results always hold even, including those scores of zero observations in the analysis, as our robustness tests show (see Internet Appendix Table IA1 and Table IA5), Electronic copy available at: https://ssrn .Because small firms attract less attention and have fewer news releases, information is likely to be more asymmetric and to be diffused more slowly for these stocks",
-      "results": ".However, our main results always hold even, including those scores of zero observations in the analysis, as our robustness tests show (see Internet Appendix Table IA1 and Table IA5), Electronic copy available at: https://ssrn .Panel B summarizes the results of the relationship between current news sentiment scores and future SUE .Relying on the data set of news sentiment scores, we examine whether there is a cross- sectional pattern of news",
-      "limitations": "Fama and MacBeth (1973) approach: to ensure the robustness of our findings presented in the portfolio approach, we also use the multivariate Fama and MacBeth (1973) regressions to check whether news sentiment predicts future stock returns [Insert Table 11 Here] In sum, these results suggest that the future return of the GMB News portfolio is pronounced only at short time horizons and in firms with opaque information environments, thus providing supportive evidence for the mispricing view of return predictability"
-    }
   }
 }

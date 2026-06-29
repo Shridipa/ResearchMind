@@ -72,7 +72,7 @@ export default function SearchPage() {
     if (!query.trim() || !accessToken) return
     try {
       const res = await startResearch(accessToken, query, wsId)
-      addNotification({ type: 'info', title: 'Research Started', message: `Job ${res.job_id} running â€” watch Live Activity on dashboard.` })
+      addNotification({ type: 'info', title: 'Research Started', message: `Job ${res.job_id} running — watch Live Activity on dashboard.` })
     } catch {
       addNotification({ type: 'error', title: 'Research Failed', message: 'Could not start research job.' })
     }
@@ -100,7 +100,7 @@ export default function SearchPage() {
               value={query}
               onChange={e => setQuery(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleSearch()}
-              placeholder="Search documents, research sessions, conversationsâ€¦"
+              placeholder="Search documents, research sessions, conversations…"
               className="input text-sm"
               style={{ paddingLeft: 36 }}
             />
@@ -120,7 +120,7 @@ export default function SearchPage() {
           </div>
           <button onClick={handleSearch} disabled={searching} className="btn btn-primary px-5">
             <Search size={14} />
-            {searching ? 'Searchingâ€¦' : 'Search'}
+            {searching ? 'Searching\u2026' : 'Search'}
           </button>
           <button onClick={handleResearch} disabled={!query.trim()} className="btn btn-ghost border border-white/10 px-4">
             Run AI Research
@@ -129,9 +129,9 @@ export default function SearchPage() {
 
         {/* Mode description */}
         <p className="text-xs text-white/30 mt-3">
-          {mode === 'hybrid' && 'ðŸ”¥ Hybrid: Combines BM25 keyword matching with semantic vector similarity for best recall and precision'}
-          {mode === 'semantic' && 'ðŸ§  Semantic: Pure vector similarity â€” great for conceptual queries and paraphrased matches'}
-          {mode === 'keyword' && 'ðŸ” Keyword: BM25 ranking â€” fastest mode, best for exact term matches'}
+          {mode === 'hybrid' && 'Hybrid: Combines BM25 keyword matching with semantic vector similarity for best recall and precision'}
+          {mode === 'semantic' && 'Semantic: Pure vector similarity \u2014 great for conceptual queries and paraphrased matches'}
+          {mode === 'keyword' && 'Keyword: BM25 ranking \u2014 fastest mode, best for exact term matches'}
         </p>
       </motion.div>
 
@@ -163,7 +163,7 @@ export default function SearchPage() {
         {results && !searching && (
           <motion.div className="space-y-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <div className="flex items-center justify-between">
-              <p className="text-xs text-white/40">{results.length} results for &quot;<span className="text-white/70">{query}</span>&quot; · {mode} search</p>
+              <p className="text-xs text-white/40">{results.length} results for {'"'}<span className="text-white/70">{query}</span>{'"'} &middot; {mode} search</p>
               <button className="btn-ghost btn text-xs gap-1.5 py-1.5">
                 <Sliders size={12} /> Filters
               </button>

@@ -46,14 +46,14 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
             autoFocus
             value={query}
             onChange={e => setQuery(e.target.value)}
-            placeholder="Search commands, pages, documents…"
+            placeholder="Search commands, pages, documents\u2026"
             className="flex-1 bg-transparent border-0 outline-none text-sm text-white/80 placeholder-white/30"
           />
           <kbd className="text-white/30 text-xs px-1.5 py-0.5 rounded bg-white/5 border border-white/10">ESC</kbd>
         </div>
         <div className="py-2 max-h-72 overflow-y-auto">
           {items.length === 0 ? (
-            <p className="text-center text-white/30 text-sm py-8">No results for &quot;{query}&quot;</p>
+            <p className="text-center text-white/30 text-sm py-8">No results for {'"'}{query}{'"'}</p>
           ) : items.map(item => (
             <Link key={item.href} href={item.href} onClick={onClose}>
               <div className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 cursor-pointer transition-colors">
@@ -120,7 +120,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg bg-white/4 border border-white/6 text-white/35 text-xs hover:bg-white/6 transition-colors"
           >
             <Command size={12} />
-            <span>Quick search…</span>
+            <span>Quick search\u2026</span>
             <span className="ml-auto opacity-60">⌘K</span>
           </button>
         </div>
@@ -161,7 +161,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <header className="sticky top-0 z-30 h-14 flex items-center justify-between px-6 border-b border-white/5 bg-[rgb(9,9,11)]/80 backdrop-blur-xl">
           <div className="flex items-center gap-2 text-white/40 text-sm">
             <Activity size={14} className={wsConnected ? 'text-emerald-400' : 'text-amber-400'} />
-            <span className="text-white/55">{wsConnected ? 'Live' : 'Connecting…'}</span>
+            <span className="text-white/55">{wsConnected ? 'Live' : 'Connecting\u2026'}</span>
           </div>
           <div className="flex items-center gap-3">
             <button className="relative p-2 rounded-lg hover:bg-white/5 text-white/50 hover:text-white/80 transition-colors">

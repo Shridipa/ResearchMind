@@ -67,8 +67,24 @@ jobs:
   frontend-test:
     name: Frontend Tests
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
+      - name: Show checked out commit
+        run: |
+          echo "Commit:"
+          git rev-parse HEAD
+          echo "Branch:"
+          git branch -a
+
+      - name: Print offending files
+        run: |
+          echo "===== search/page.tsx ====="
+          nl -ba frontend/app/\(dashboard\)/dashboard/search/page.tsx | sed -n '160,170p'
+
+          echo "===== layout.tsx ====="
+          nl -ba frontend/app/\(dashboard\)/layout.tsx | sed -n '50,60p'
 
       - name: Set up Node 20
         uses: actions/setup-node@v4

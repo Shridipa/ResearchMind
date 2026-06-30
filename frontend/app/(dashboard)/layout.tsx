@@ -53,7 +53,7 @@ function CommandPalette({ onClose }: { onClose: () => void }) {
         </div>
         <div className="py-2 max-h-72 overflow-y-auto">
           {items.length === 0 ? (
-            <p className="text-center text-white/30 text-sm py-8">No results for {'"'}{query}{'"'}</p>
+            <p className="text-center text-white/30 text-sm py-8">No results for {'\u201C'}{query}{'\u201D'}</p>
           ) : items.map(item => (
             <Link key={item.href} href={item.href} onClick={onClose}>
               <div className="flex items-center gap-3 px-4 py-3 hover:bg-white/5 cursor-pointer transition-colors">

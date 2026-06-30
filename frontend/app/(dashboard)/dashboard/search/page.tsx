@@ -163,7 +163,7 @@ export default function SearchPage() {
         {results && !searching && (
           <motion.div className="space-y-3" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <div className="flex items-center justify-between">
-              <p className="text-xs text-white/40">{results.length} results for {'"'}<span className="text-white/70">{query}</span>{'"'} &middot; {mode} search</p>
+              <p className="text-xs text-white/40">{results.length} results for {'\u201C'}<span className="text-white/70">{query}</span>{'\u201D'} &middot; {mode} search</p>
               <button className="btn-ghost btn text-xs gap-1.5 py-1.5">
                 <Sliders size={12} /> Filters
               </button>
